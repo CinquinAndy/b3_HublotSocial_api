@@ -1,0 +1,42 @@
+{
+  "name": "b3_hublotsocial_api",
+  "version": "1.0.0",
+  "description": "b3_HublotSocial_api",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon --exec npx babel-node ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CinquinAndy/b3_HublotSocial_api.git"
+  },
+  "author": "Andy Cinquin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CinquinAndy/b3_HublotSocial_api/issues"
+  },
+  "homepage": "https://github.com/CinquinAndy/b3_HublotSocial_api#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/node": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.14",
+    "uuid": "^7.0.3"
+  },
+  "dependencies": {
+    "@babel/register": "^7.16.0",
+    "babel-node": "^0.0.1-security",
+    "bcryptjs": "^2.4.3",
+    "cookie-parse": "^0.4.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.9.0"
+  }
+}
