@@ -29,7 +29,7 @@ export const refreshToken = async (__rt, next) => {
     if (!decoded.id) {
         return next(new GlobalError("unAuthorize, please login", 401));
     }
-    const freshUser = await findByPk(Account, decoded.id);
+    const freshUser = await findByPk(User, decoded.id);
     console.log(freshUser);
 
     if (!freshUser) {

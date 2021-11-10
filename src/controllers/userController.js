@@ -1,16 +1,13 @@
-import _ from "lodash";
-import {findAll} from "../services";
 import Model from "../models";
 import catchAsync from "../libs/catchAsync";
+import {userService_getAllUsers, userService_getUser} from "../services/userService";
 
-const {Account} = Model;
+const {User} = Model;
 
 export const getAllUsers = catchAsync(async (req, res, next) => {
-    const users = await findAll(Account);
-    const body = users.map(user => _.omit(user, ["password"]));
-
-    return res.status(200).json({
-        status: "success",
-        payload: users
-    });
+    await userService_getAllUsers(req, res, next);
 });
+
+export const getUser = catchAsync(async (req, res, next)=>{
+    await userService_getUser(req,res,next);
+})
