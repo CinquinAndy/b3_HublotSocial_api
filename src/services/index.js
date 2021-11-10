@@ -17,3 +17,15 @@ export const findUser = (model, payload) =>
 export const findByPk = (model, id) => model.findByPk(id);
 
 export const findAll = model => model.findAll();
+
+export const findParticipantsConversation = (model, id) => model.findAll({
+    where: {
+        id_conversation: id
+    },
+})
+
+export const findParticipantsUser = (model, id) => model.findAll({
+    where: {
+        id_user: id
+    },
+});
