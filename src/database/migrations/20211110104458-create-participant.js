@@ -1,4 +1,5 @@
 const {v4: uuidv4} = require("uuid");
+
 module.exports = {
     up: (queryInterface, Sequelize) =>
         queryInterface.createTable('Participants', {

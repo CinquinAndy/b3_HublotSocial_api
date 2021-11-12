@@ -1,0 +1,7 @@
+drop table
+public."Conversations",
+public."Messages",
+public."Participants",
+public."SequelizeMeta",
+public."Users"
+
