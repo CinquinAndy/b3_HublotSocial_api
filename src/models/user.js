@@ -1,4 +1,8 @@
+import Model from "../models";
+
 import {v4 as uuidv4} from 'uuid';
+
+// const {Message} = Model;
 
 module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define(
@@ -51,8 +55,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         {}
     );
-    User.associate = () => {
+    User.associate = ({Message}) => {
 // associations can be defined here
+        User.hasMany(Message, {as: 'Message', foreignKey: 'user_id'})
     };
     return User;
 };

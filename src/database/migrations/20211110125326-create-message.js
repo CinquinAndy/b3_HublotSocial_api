@@ -20,7 +20,7 @@ module.exports = {
                 defaultValue: ''
             },
             id_conversation: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.UUID,
                 allowNull: false,
                 references: {
                     model: 'Conversations',

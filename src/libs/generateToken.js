@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import {promisify} from "util";
 import _ from "lodash";
-import {findByPk} from "../services";
+import {findByPk} from "../services/request/generic";
 import Model from "../models";
 import GlobalError from "../libs/catchAsync";
 

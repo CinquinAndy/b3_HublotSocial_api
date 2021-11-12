@@ -1,10 +1,10 @@
 import Model from "../models";
 import _ from "lodash";
-import {findOrCreate} from "./index";
 import {hashPassword} from "../libs/passwordOp";
 import catchAsync from "../libs/catchAsync";
 import {createTokens} from "../libs/generateToken";
 import {createCookie} from "../libs/createCookie";
+import {findOrCreateUser} from "./request/user";
 
 const {User} = Model;
 
@@ -13,7 +13,7 @@ export const signupService = catchAsync(async (req, res, next) => {
 
     const email = req.body.email.toLowerCase();
 
-    const [user, created] = await findOrCreate(User, {
+    const [user, created] = await findOrCreateUser(User, {
         ...req.body,
         password,
         email

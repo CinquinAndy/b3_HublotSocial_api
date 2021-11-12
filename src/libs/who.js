@@ -1,5 +1,5 @@
 import {jwtVerifyToken, refreshToken} from "./generateToken";
-import {findByPk} from "../services";
+import {findByPk} from "../services/request/generic";
 import Model from "../models";
 import {createCookie} from "./createCookie";
 

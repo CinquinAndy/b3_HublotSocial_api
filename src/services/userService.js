@@ -1,8 +1,9 @@
-import {findAll, findUser} from "./index";
 import _ from "lodash";
 import catchAsync from "../libs/catchAsync";
 import Model from "../models";
 import {jwtToUser} from "../libs/who";
+import {findUser} from "./request/user";
+import {findAll} from "./request/generic";
 
 const {User} = Model;
 

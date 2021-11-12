@@ -1,6 +1,6 @@
 import {Router} from "express";
 import {jwtProtect} from "../middlewares/jwtAuthMiddleware";
-import {getAllUsers, getUser} from "../controllers/userController";
+import {getAllUsers, getMe, getUser} from "../controllers/userController";
 
 const router = Router();
 

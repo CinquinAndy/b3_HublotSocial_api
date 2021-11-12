@@ -1,5 +1,5 @@
 import catchAsync from "../libs/catchAsync";
-import {userService_getAllUsers, userService_getUser} from "../services/userService";
+import {userService_getAllUsers, userService_getMe, userService_getUser} from "../services/userService";
 
 export const getAllUsers = catchAsync(async (req, res, next) => {
     await userService_getAllUsers(req, res, next);

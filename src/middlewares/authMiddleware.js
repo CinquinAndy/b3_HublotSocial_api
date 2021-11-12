@@ -4,7 +4,7 @@ import Model from "../models";
 
 import GlobalError from "../libs/globalError";
 
-import {findUser} from "../services/index";
+import {findUser} from "../services/request/user";
 import {comparePassord} from "../libs/passwordOp";
 
 const {User} = Model;

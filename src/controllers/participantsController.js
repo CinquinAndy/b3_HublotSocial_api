@@ -1,5 +1,7 @@
 import catchAsync from "../libs/catchAsync";
 import {
+    addParticipantsFromMailService,
+    addParticipantsService,
     getParticipantsFromConversationService,
     getParticipantsFromMeService,
     getParticipantsFromUserService
@@ -15,4 +17,11 @@ export const getParticipantsFromUser = catchAsync(async (req, res, next) => {
 
 export const getParticipantsFromMe = catchAsync(async (req, res, next) => {
     await getParticipantsFromMeService(req, res, next);
+})
+
+export const addParticipants = catchAsync(async (req,res,next)=>{
+    await addParticipantsService(req,res,next);
+})
+export const addParticipantsFromMail = catchAsync(async (req,res,next)=>{
+    await addParticipantsFromMailService(req,res,next);
 })

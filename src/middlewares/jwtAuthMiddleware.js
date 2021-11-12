@@ -3,7 +3,7 @@ import {jwtVerifyToken, refreshToken} from "../libs/generateToken";
 import {isPasswordChanged} from "../libs/passwordOp";
 import catchAsync from "../libs/catchAsync";
 import Model from "../models";
-import {findByPk} from "../services/index";
+import {findByPk} from "../services/request/generic";
 import {createCookie} from "../libs/createCookie";
 
 const {User} = Model;

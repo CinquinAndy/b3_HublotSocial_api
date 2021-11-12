@@ -6,8 +6,6 @@
 .sequelizerc,8\4\84422194e897d322e4ea023c315729c1dbcfe5b1
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-G
-src/libs/globalError.js,c\2\c244fbe8397b803f0e0c05cbe101852b486b461f
 8
 .babelrc,b\c\bcac7464521b8c19a2372c739f6dc9e9ab7dfc80
 <
