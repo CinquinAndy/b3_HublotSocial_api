@@ -6,7 +6,7 @@ module.exports = {
             id_conversation: {
                 allowNull: false,
                 primaryKey: true,
-                type: DataTypes.UUID,
+                type: Sequelize.UUID,
                 references: {
                     model: 'Conversations',
                     key: 'id'
@@ -17,7 +17,7 @@ module.exports = {
             id_user: {
                 allowNull: false,
                 primaryKey: true,
-                type: DataTypes.UUID,
+                type: Sequelize.UUID,
                 references: {
                     model: 'Users',
                     key: 'id'
