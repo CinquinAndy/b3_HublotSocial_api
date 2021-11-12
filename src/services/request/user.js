@@ -4,13 +4,15 @@
  * @param payload
  * @returns {Promise<[Model, boolean]>}
  */
-export const findOrCreateUser = (model, payload) =>
-    model.findOrCreate({
-        where: {email: payload.email},
-        defaults: {
-            ...payload
-        }
+export const createUser = (model, payload) =>
+    model.create({
+        id:payload.id,
+        firstName: payload.firstName,
+        lastName: payload.lastName,
+        email: payload.email,
+        password: payload.password
     });
+
 
 /**
  * Find user by email
@@ -22,6 +24,5 @@ export const findUser = (model, email) =>
     model.findOne({
         where: {
             email: email
-        },
-        logging: false
+        }
     });
