@@ -1,4 +1,5 @@
 import {Op} from "sequelize";
+import {v4 as uuidv4} from "uuid";
 
 export const findMessageUser = (model, id) => model.findAll({
     where: {
@@ -26,6 +27,7 @@ export const findMessageConversation = (model, id) => model.findAll({
 })
 
 export const createMessage = (model, payload) => model.create({
+    id:uuidv4(),
     content:payload.content,
     id_conversation:payload.id_conversation,
     id_user:payload.id_user
@@ -34,8 +36,8 @@ export const createMessage = (model, payload) => model.create({
 
 export const updateMessage = (model, payload) => model.update({
     content:payload.content,
-    id_conversation:payload.id_conversation,
-    id_user:payload.id_user
+    // id_conversation:payload.id_conversation,
+    // id_user:payload.id_user
 },{
     where:{
         id:payload.id

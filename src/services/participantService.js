@@ -4,6 +4,8 @@ import {jwtToUser} from "../libs/who";
 import {findFromIdConversation} from "./request/conversation";
 import {findOrCreateParticipantsBoth, findParticipantsUser} from "./request/participant";
 import {findUser} from "./request/user";
+import {findAll} from "./request/generic";
+import {v4 as uuidv4} from "uuid";
 
 const {User} = Model;
 const {Participant} = Model;
@@ -42,6 +44,16 @@ export const getParticipantsFromMeService = catchAsync(async (req, res, next) =>
     });
 })
 
+export const getParticipantsService = catchAsync(async (req, res, next) => {
+    const participants = await findAll(Participant);
+    const body = JSON.stringify(participants)
+
+    return res.status(200).json({
+        status: "success",
+        payload: body
+    });
+})
+
 export const addParticipantsService = catchAsync(async (req, res, next) => {
     const id_user = req.body.id_user;
     const id_conversation = req.body.id_conversation;
@@ -72,6 +84,7 @@ export const addParticipantsFromMailService = catchAsync(async (req, res, next) 
     const id_conversation = req.body.id_conversation;
 
     const [participant, created] = await findOrCreateParticipantsBoth(Participant, {
+        "id":uuidv4(),
         'id_user': id_user,
         'id_conversation': id_conversation
     });

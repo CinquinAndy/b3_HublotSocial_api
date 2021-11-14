@@ -1,10 +1,10 @@
-import * as model from "../../models";
+const {Op} = require("sequelize");
+import Model from "../../models";
+import {v4 as uuidv4} from "uuid";
 
-const db = require("../../models");
-
-const {User} = model;
-const {Conversation} = model;
-const {Participant} = model;
+const {User} = Model;
+const {Conversation} = Model;
+const {Participant} = Model;
 
 /**
  * From title
@@ -40,16 +40,13 @@ export const findAllConversationsFromUser = (model, id_user) =>
         include: [
             {
                 model: User,
-                as: "users",
+                as: "Users",
                 attributes: ["firstName", "lastName", "email"],
                 through: {
                     attributes: []
                 }
             }
         ],
-        where: {
-            id_user: id_user
-        }
     })
 
 /**
@@ -77,23 +74,58 @@ export const findOrCreateConversation = (model, payload) =>
         }
     })
 
-export const addUserToConversation = (payload) =>
-    Conversation.findByPk(payload.conversation_id)
-        .then((finded) => {
-            return User.findByPk(payload.user_id).then((user) => {
-                if (!user) {
-                    console.log("user not found");
-                    return null;
-                }
-                Participant.create([
-                    {id_user: payload.user_id, id_conversation: payload.conversation_id}
-                ])
-            })
-        }).catch((err) => {
-        console.log("Error while adding user to conversation")
+export const addUserToConversation = (model, payload) =>
+    Participant.create(
+        {user_id: payload.user_id, conversation_id: payload.conversation_id}
+    )
+
+export const findByBoth = (model, payload) =>
+    model.findAll({
+        where:{
+            [Op.and]: [
+                { user_id: payload.user_id },
+                { conversation_id: payload.conversation_id }
+            ]
+        }
     })
+//     .then((finded) => {
+//         return User.findByPk(payload.user_id).then((user) => {
+//             if (!user) {
+//                 console.log("user not found");
+//                 return null;
+//             }
+//             Participant.create([
+//                 {id_user: payload.user_id, id_conversation: payload.conversation_id}
+//             ])
+//         })
+//     }).catch((err) => {
+//     console.log("Error while adding user to conversation")
+// })
+// model.findOrCreate({
+//     where: {
+//          [Op.and]: [
+//             {'$Participant.user_id' : payload.user_id},
+//             {'$Participant.conversation_id' : payload.conversation_id},
+//         ]
+//     },
+//     include: {
+//         model: Participant,
+//         include: [
+//             {
+//                 model: User,
+//                 through: {attributes: []}
+//             }
+//         ]
+//     },
+//     defaults: {
+//         user_id: payload.user_id,
+//         conversation_id: payload.conversation_id
+//     }
+// })
+
 
 export const addConversation = (model, payload) => model.create({
-    title:payload.title
+    id: uuidv4(),
+    title: payload.title
 })
 

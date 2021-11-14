@@ -1,4 +1,13 @@
 import catchAsync from "../libs/catchAsync";
+import {
+    addNewMessageService,
+    deleteMessageService,
+    getAllMessagesFromConversationService,
+    getAllMessagesService,
+    getMyMessagesFromConversationService,
+    getMyMessagesService,
+    updateMessageService
+} from "../services/messageService";
 
 export const getAllMessages = catchAsync(async (req, res, next) => {
     await getAllMessagesService(req, res, next);

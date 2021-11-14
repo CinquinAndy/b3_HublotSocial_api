@@ -84,16 +84,14 @@ export const addNewMessageService = catchAsync(async (req, res, next) => {
 })
 
 export const updateMessageService = catchAsync(async (req, res, next) => {
-    const actualUser = await jwtToUser(req.cookies.__act, req.cookies.__rt, res, next);
-    const id_conversation = req.body.id_conversation;
+    // const actualUser = await jwtToUser(req.cookies.__act, req.cookies.__rt, res, next);
+    // const id_conversation = req.body.id_conversation;
     const content = req.body.content;
     const id = req.params['id_message'];
 
     const message = await updateMessage(Message, {
         "id": id,
-        "content": content,
-        "id_conversation": id_conversation,
-        "id_user": actualUser.id
+        "content": content
     });
 
     return res.status(200).json({

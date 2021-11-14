@@ -6,6 +6,6 @@ const router = Router();
 
 router.get("/", jwtProtect, getAllUsers);
 router.get("/me", jwtProtect, getMe);
-router.get("/:userEmail", jwtProtect, getUser);
+router.get("/:user_email", jwtProtect, getUser);
 
 export default router;

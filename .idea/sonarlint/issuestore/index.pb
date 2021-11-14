@@ -10,3 +10,23 @@
 .babelrc,b\c\bcac7464521b8c19a2372c739f6dc9e9ab7dfc80
 <
 .env-exemple,7\7\770b4416aa964ef062bd7d5e3eecffc88e47b535
+P
+ src/middlewares/generateToken.js,e\e\ee1a36335d9edf4dd583a57883d5d43b8394a12c
+C
+src/routes/index.js,a\2\a2809aa693b8ad396fe7635ecf4652e70593ee27
+I
+src/libs/generateToken.js,8\8\886dc6f81e794bed84ee1374bd61d71ea29b342c
+Q
+!src/middlewares/authMiddleware.js,4\9\4969ecba7549ca014000f9672c684606ad74fa48
+?
+src/libs/who.js,2\9\29c0d99822dfb2c019eece8c99b1c6ee9e777fee
+<
+package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
+h
+8src/database/migrations/20211110125326-create-message.js,5\9\5971009912c26b0a30cf487ad0bd0b9ba34a9c57
+F
+src/libs/passwordOp.js,0\d\0d68e620db8422c8eaf91a018b24d684919b8beb
+Q
+!src/controllers/authController.js,8\7\87ad840cd01564858d88833b7d3d93faa7c869fd
+G
+src/routes/authRoute.js,6\e\6ea62d87aa682d38c30a5a3155b191a81ee0836f

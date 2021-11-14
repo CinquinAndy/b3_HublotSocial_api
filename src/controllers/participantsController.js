@@ -4,7 +4,7 @@ import {
     addParticipantsService,
     getParticipantsFromConversationService,
     getParticipantsFromMeService,
-    getParticipantsFromUserService
+    getParticipantsFromUserService, getParticipantsService
 } from "../services/participantService";
 
 export const getParticipantsFromConversation = catchAsync(async (req, res, next) => {
@@ -17,6 +17,9 @@ export const getParticipantsFromUser = catchAsync(async (req, res, next) => {
 
 export const getParticipantsFromMe = catchAsync(async (req, res, next) => {
     await getParticipantsFromMeService(req, res, next);
+})
+export const getParticipants = catchAsync(async (req, res, next) => {
+    await getParticipantsService(req, res, next);
 })
 
 export const addParticipants = catchAsync(async (req,res,next)=>{

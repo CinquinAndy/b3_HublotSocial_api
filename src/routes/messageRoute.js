@@ -13,7 +13,7 @@ const router = Router();
 router.get("/", jwtProtect, getAllMessages);
 router.get("/me", jwtProtect, getMyMessages);
 router.get("/me/:id_conversation", jwtProtect, getMyMessagesFromConversation);
-router.get("/:id_conversation", jwtProtect, getAllMessagesFromConversation)
+router.get("/all/:id_conversation", jwtProtect, getAllMessagesFromConversation)
 router.post("/", jwtProtect, addNewMessage)
 router.patch("/:id_message", jwtProtect, updateMessage)
 router.delete("/:id_message", jwtProtect, deleteMessage)
