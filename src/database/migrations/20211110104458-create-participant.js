@@ -3,7 +3,7 @@ const {v4: uuidv4} = require("uuid");
 module.exports = {
     up: (queryInterface, Sequelize) =>
         queryInterface.createTable('Participants', {
-            conversation_id: {
+            id_conversation: {
                 allowNull: false,
                 primaryKey: true,
                 type: Sequelize.UUID,
@@ -14,7 +14,7 @@ module.exports = {
                 onUpdate: 'cascade',
                 onDelete: 'cascade'
             },
-            user_id: {
+            id_user: {
                 allowNull: false,
                 primaryKey: true,
                 type: Sequelize.UUID,

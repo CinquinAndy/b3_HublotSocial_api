@@ -10,7 +10,7 @@ import {
 
 const router = Router();
 
-router.get("/id/:conversation_id", jwtProtect, getParticipantsFromConversation);
+router.get("/id/:id_conversation", jwtProtect, getParticipantsFromConversation);
 router.get("/email/:user_email", jwtProtect, getParticipantsFromUser);
 router.get("/me", jwtProtect, getParticipantsFromMe);
 router.get("/", jwtProtect, getParticipants);

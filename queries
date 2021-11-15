@@ -5,3 +5,6 @@ public."Participants",
 public."SequelizeMeta",
 public."Users"
 
+sequelize db:migrate
+
+npx sequelize-cli model:generate --name Message --attributes date:date,content:string,id_conversation:uuid

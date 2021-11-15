@@ -1,8 +1,13 @@
 import catchAsync from "../libs/catchAsync";
 import {
-    addConversationService, addToMyConversationService, getAllConversationsService, getConversationFromIdService,
+    addConversationService,
+    addToMyConversationService,
+    deleteConversationService,
+    getAllConversationsService,
+    getConversationFromIdService,
     getConversationFromTitleService,
-    getMyConversationsService
+    getMyConversationsService,
+    updateConversationService
 } from "../services/conversationService";
 
 export const getAllConversations = catchAsync(async (req, res, next) => {
@@ -27,5 +32,12 @@ export const addToMyConversation = catchAsync(async (req, res, next) => {
 
 export const addConversation = catchAsync(async (req, res, next) => {
     await addConversationService(req,res,next);
+})
+export const updateConversation = catchAsync(async (req, res, next) => {
+    await updateConversationService(req,res,next);
+})
+
+export const deleteConversation = catchAsync(async (req, res, next) => {
+    await deleteConversationService(req,res,next);
 })
 

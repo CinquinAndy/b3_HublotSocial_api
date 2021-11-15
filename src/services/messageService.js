@@ -8,13 +8,14 @@ import {
     findMessageUser,
     findMessageUserAndConversation, updateMessage
 } from "./request/message";
+import _ from "lodash";
 
 const {User} = Model;
 const {Message} = Model;
 
 export const getAllMessagesService = catchAsync(async (req, res, next) => {
-    const messages = findAll(Message);
-    const body = JSON.stringify(messages)
+    const messages = await findAll(Message);
+    const body = messages.map(user => _.omit(user.toJSON()));
 
     return res.status(200).json({
         status: "success",
@@ -27,11 +28,9 @@ export const getMyMessagesService = catchAsync(async (req, res, next) => {
 
     const messages = await findMessageUser(Message, actualUser.id)
 
-    const body = JSON.stringify(messages)
-
     return res.status(200).json({
         status: "success",
-        payload: body
+        payload: messages
     });
 })
 
@@ -44,11 +43,9 @@ export const getMyMessagesFromConversationService = catchAsync(async (req, res, 
         "id_conversation": id_conversation
     })
 
-    const body = JSON.stringify(messages)
-
     return res.status(200).json({
         status: "success",
-        payload: body
+        payload: messages
     });
 })
 
@@ -57,11 +54,9 @@ export const getAllMessagesFromConversationService = catchAsync(async (req, res,
 
     const messages = await findMessageConversation(Message, id_conversation)
 
-    const body = JSON.stringify(messages)
-
     return res.status(200).json({
         status: "success",
-        payload: body
+        payload: messages
     });
 })
 

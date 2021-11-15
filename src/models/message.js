@@ -1,4 +1,5 @@
 import Model from "../models";
+
 const {v4: uuidv4} = require("uuid");
 
 // const {Conversation} = Model;
@@ -44,10 +45,8 @@ module.exports = (sequelize, DataTypes) => {
     )
 
 
-    Message.associate = () => {
-// associations can be defined here
-//         Message.hasOne(Conversation)
-//         Message.hasOne(User)
+    Message.associate = ({User}) => {
+        Message.belongsTo(User, {as: 'Users', foreignKey: 'id'})
     };
     return Message;
 };

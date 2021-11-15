@@ -6,6 +6,19 @@ const {User} = Model;
 const {Conversation} = Model;
 const {Participant} = Model;
 
+
+export const findAllConversation = (model) => model.findAll({
+    include: [
+        {
+            model: User,
+            as: "Users",
+            attributes: ["firstName", "lastName", "email"],
+            through: {
+                attributes: []
+            },
+        }
+    ],
+})
 /**
  * From title
  * @param model
@@ -15,7 +28,17 @@ const {Participant} = Model;
 export const findFromTitleConversation = (model, title) => model.findAll({
     where: {
         title: title
-    }
+    },
+    include: [
+        {
+            model: User,
+            as: "Users",
+            attributes: ["firstName", "lastName", "email"],
+            through: {
+                attributes: []
+            }
+        }
+    ],
 });
 
 /**
@@ -26,8 +49,18 @@ export const findFromTitleConversation = (model, title) => model.findAll({
  */
 export const findFromIdConversation = (model, id) => model.findAll({
     where: {
-        id_conversation: id
+        id: id
     },
+    include: [
+        {
+            model: User,
+            as: "Users",
+            attributes: ["firstName", "lastName", "email"],
+            through: {
+                attributes: []
+            }
+        }
+    ],
 })
 
 /**
@@ -41,9 +74,21 @@ export const findAllConversationsFromUser = (model, id_user) =>
             {
                 model: User,
                 as: "Users",
-                attributes: ["firstName", "lastName", "email"],
+                attributes: ["firstName", "lastName", "email", "id"],
                 through: {
                     attributes: []
+                },
+
+                where: {
+                    id: id_user
+                    // [Op.or]: [
+                    //     {id: id_user},
+                    //     {
+                    //         id: {
+                    //             [Op.col]: "Users.id"
+                    //         }
+                    //     }
+                    // ]
                 }
             }
         ],
@@ -60,15 +105,16 @@ export const findOrCreateConversation = (model, payload) =>
         where: {
             id: payload.id_conversation
         },
-        include: {
-            model: Participant,
-            include: [
-                {
-                    model: User,
-                    through: {attributes: []}
+        include: [
+            {
+                model: User,
+                as: "Users",
+                attributes: ["firstName", "lastName", "email"],
+                through: {
+                    attributes: []
                 }
-            ]
-        },
+            }
+        ],
         defaults: {
             ...payload
         }
@@ -76,53 +122,18 @@ export const findOrCreateConversation = (model, payload) =>
 
 export const addUserToConversation = (model, payload) =>
     Participant.create(
-        {user_id: payload.user_id, conversation_id: payload.conversation_id}
+        {id_user: payload.id_user, id_conversation: payload.id_conversation}
     )
 
 export const findByBoth = (model, payload) =>
     model.findAll({
-        where:{
+        where: {
             [Op.and]: [
-                { user_id: payload.user_id },
-                { conversation_id: payload.conversation_id }
+                {id_user: payload.id_user},
+                {id_conversation: payload.id_conversation}
             ]
         }
     })
-//     .then((finded) => {
-//         return User.findByPk(payload.user_id).then((user) => {
-//             if (!user) {
-//                 console.log("user not found");
-//                 return null;
-//             }
-//             Participant.create([
-//                 {id_user: payload.user_id, id_conversation: payload.conversation_id}
-//             ])
-//         })
-//     }).catch((err) => {
-//     console.log("Error while adding user to conversation")
-// })
-// model.findOrCreate({
-//     where: {
-//          [Op.and]: [
-//             {'$Participant.user_id' : payload.user_id},
-//             {'$Participant.conversation_id' : payload.conversation_id},
-//         ]
-//     },
-//     include: {
-//         model: Participant,
-//         include: [
-//             {
-//                 model: User,
-//                 through: {attributes: []}
-//             }
-//         ]
-//     },
-//     defaults: {
-//         user_id: payload.user_id,
-//         conversation_id: payload.conversation_id
-//     }
-// })
-
 
 export const addConversation = (model, payload) => model.create({
     id: uuidv4(),
