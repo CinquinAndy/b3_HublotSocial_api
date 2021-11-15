@@ -3,7 +3,7 @@ import Model from "../models";
 import {jwtToUser} from "../libs/who";
 import {deleteElement, findAll, findByPk} from "./request/generic";
 import {
-    createMessage,
+    createMessage, findMessage,
     findMessageConversation,
     findMessageUser,
     findMessageUserAndConversation, updateMessage
@@ -14,7 +14,7 @@ const {User} = Model;
 const {Message} = Model;
 
 export const getAllMessagesService = catchAsync(async (req, res, next) => {
-    const messages = await findAll(Message);
+    const messages = await findMessage(Message);
     const body = messages.map(message => _.omit(message.toJSON()));
 
     return res.status(200).json({
@@ -54,6 +54,7 @@ export const getAllMessagesFromConversationService = catchAsync(async (req, res,
 
     const messages = await findMessageConversation(Message, id_conversation)
 
+
     return res.status(200).json({
         status: "success",
         payload: messages
@@ -71,6 +72,10 @@ export const addNewMessageService = catchAsync(async (req, res, next) => {
         "id_conversation": id_conversation,
         "id_user": actualUser.id
     });
+
+    message.Users = actualUser;
+
+    await message.save();
 
     return res.status(200).json({
         status: "success",
@@ -95,10 +100,17 @@ export const updateMessageService = catchAsync(async (req, res, next) => {
 
 export const deleteMessageService = catchAsync(async (req, res, next) => {
     const id = req.params['id_message'];
-    const message = await deleteElement(Message, id);
+    const message = await findByPk(Message, id);
+
+    if (_.isEmpty(message)) {
+        return res.status(400).json({
+            status: "The message does not exist"
+        });
+    }
+
+    await message.destroy();
 
     return res.status(200).json({
-        status: "success",
-        payload: message
+        status: "success"
     });
 })

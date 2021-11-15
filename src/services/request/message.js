@@ -3,10 +3,29 @@ import {v4 as uuidv4} from "uuid";
 import Model from "../../models";
 
 const {User} = Model;
+export const findMessage = (model) => model.findAll({
+    include: [
+        {
+            model: User,
+            as: "Users",
+            required:true,
+            attributes: ["firstName", "lastName", "email"],
+        }
+    ],
+})
+
 export const findMessageUser = (model, id) => model.findAll({
     where: {
         id_user: id
-    }
+    },
+    include: [
+        {
+            model: User,
+            as: "Users",
+            required:true,
+            attributes: ["firstName", "lastName", "email"],
+        }
+    ],
 })
 
 export const findMessageUserAndConversation = (model, payload) => model.findAll({
@@ -19,7 +38,15 @@ export const findMessageUserAndConversation = (model, payload) => model.findAll(
                 id_conversation: payload.id_conversation
             }
         ]
-    }
+    },
+    include: [
+        {
+            model: User,
+            as: "Users",
+            required:true,
+            attributes: ["firstName", "lastName", "email"],
+        }
+    ],
 })
 
 export const findMessageConversation = (model, id) => model.findAll({
@@ -30,6 +57,7 @@ export const findMessageConversation = (model, id) => model.findAll({
         {
             model: User,
             as: "Users",
+            required:true,
             attributes: ["firstName", "lastName", "email"],
         }
     ],

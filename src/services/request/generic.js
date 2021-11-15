@@ -12,14 +12,3 @@ export const findByPk = (model, id) => model.findByPk(id);
  * @returns {Promise<Model[]>}
  */
 export const findAll = model => model.findAll();
-
-/**
- * Delete specific element
- * @param model
- * @param id
- */
-export const deleteElement = (model, id) => model.delete({
-    where:{
-        id:id
-    }
-})

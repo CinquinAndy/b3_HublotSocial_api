@@ -58,7 +58,7 @@ module.exports = (sequelize, DataTypes) => {
     User.associate = ({Message,Conversation}) => {
 // associations can be defined here
         User.belongsToMany(Conversation, {through: 'Participants', foreignKey: "id_user"})
-        User.hasMany(Message, {as: 'Messages', foreignKey: 'id_user'})
+
     };
     return User;
 };
