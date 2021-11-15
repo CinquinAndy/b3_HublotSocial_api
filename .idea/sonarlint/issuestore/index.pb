@@ -18,11 +18,7 @@ Q
 !src/middlewares/authMiddleware.js,4\9\4969ecba7549ca014000f9672c684606ad74fa48
 ?
 src/libs/who.js,2\9\29c0d99822dfb2c019eece8c99b1c6ee9e777fee
-<
-package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
 F
 src/libs/passwordOp.js,0\d\0d68e620db8422c8eaf91a018b24d684919b8beb
-Q
-!src/controllers/authController.js,8\7\87ad840cd01564858d88833b7d3d93faa7c869fd
 G
 src/routes/authRoute.js,6\e\6ea62d87aa682d38c30a5a3155b191a81ee0836f

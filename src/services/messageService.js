@@ -15,7 +15,7 @@ const {Message} = Model;
 
 export const getAllMessagesService = catchAsync(async (req, res, next) => {
     const messages = await findAll(Message);
-    const body = messages.map(user => _.omit(user.toJSON()));
+    const body = messages.map(message => _.omit(message.toJSON()));
 
     return res.status(200).json({
         status: "success",
@@ -79,19 +79,17 @@ export const addNewMessageService = catchAsync(async (req, res, next) => {
 })
 
 export const updateMessageService = catchAsync(async (req, res, next) => {
-    // const actualUser = await jwtToUser(req.cookies.__act, req.cookies.__rt, res, next);
-    // const id_conversation = req.body.id_conversation;
     const content = req.body.content;
     const id = req.params['id_message'];
 
-    const message = await updateMessage(Message, {
+    const messages = await updateMessage(Message, {
         "id": id,
         "content": content
     });
 
     return res.status(200).json({
         status: "success",
-        payload: message.toJSON()
+        payload: messages
     });
 })
 
@@ -101,6 +99,6 @@ export const deleteMessageService = catchAsync(async (req, res, next) => {
 
     return res.status(200).json({
         status: "success",
-        payload: message.toJSON()
+        payload: message
     });
 })
